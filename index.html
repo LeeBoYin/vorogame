@@ -1,20 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
-  <script language="javascript" type="text/javascript" src="libraries/rhill-voronoi-core.min.js"></script>
+   <title>Voronoi Canvas</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- uncomment lines below to include extra p5 libraries -->
-  <!--<script language="javascript" src="libraries/p5.dom.js"></script>-->
-  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
-  <script language="javascript" type="text/javascript" src="sketch.js"></script>
-  <script language="javascript" type="text/javascript" src="shop.js"></script>
-  <!-- this line removes any default padding and style. you might only need one of these values set. -->
-  <style> body {padding: 0; margin: 0;} </style>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+   <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+   <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
+   <script language="javascript" type="text/javascript" src="libraries/rhill-voronoi-core.min.js"></script>
+
+   <!-- Farbtastic Color Picker -->
+   <script type="text/javascript" src="libraries/farbtastic.js"></script>
+   <link rel="stylesheet" href="libraries/farbtastic.css" type="text/css" />
+
+   <script language="javascript" type="text/javascript" src="sketch.js"></script>
+   <script language="javascript" type="text/javascript" src="shop.js"></script>
+   <!-- this line removes any default padding and style. you might only need one of these values set. -->
+
+   <!-- jQuery Script -->
+   <script type="text/javascript">
+
+   $(document).ready(function() {
+      //use farbtastic color selector
+      $('#colorpicker').farbtastic('#currentColor');
+      //set default color to RED
+      $.farbtastic('#colorpicker').setColor('#ff0000');
+      $('button').click(function(){
+         $('button.disabled').toggleClass("disabled");
+         $(this).toggleClass("disabled");
+      });
+      $('button').mouseup(function() { 
+         this.blur();
+      });
+
+
+
+   });
+
+
+
+</script>
+
+<style>
+   body {
+      background-color: black;
+      cursor:default;
+   }
+   .disable {
+      cursor:default;
+   }
+
+</style>
+
 </head>
 <body>
+   <h1 class="text-center" style="color:white">Voronoi Canvas</h1>
+   <div class="container-fluid">
+
+      
+      <div class="col-xs-9 text-right" id="myContainer">
+      </div>
+      <div class="col-xs-3 text-left">
+         <div id="colorpicker"></div>
+         <div id="currentColor" class="text-center" 
+            style="width:195px">
+            <h2  style="color:black">color</h2></div><br>
+
+         <!-- <div class="btn-group text-center" style="width:195px">
+            <button id="addButton" type="button" class="btn btn-success btn-lg" style="width:80px">add</button>
+            <button id="dragButton" type="button" class="btn btn-warning btn-lg" style="width:80px">drag</button>
+            <button id="deleteButton" type="button" class="btn btn-danger btn-lg" style="width:80px">delete</button>
+         </div> -->
+         <div class="text-center" style="width:195px"><button id="putButton" type="button" class="btn btn-success btn-lg disabled" style="width:80px; cursor:pointer">put</button></div><br>
+         <div class="text-center" style="width:195px"><button id="dragButton" type="button" class="btn btn-warning btn-lg" style="width:80px; cursor:pointer">drag</button></div><br>
+         <div class="text-center" style="width:195px"><button id="deleteButton" type="button" class="btn btn-danger btn-lg" style="width:80px; cursor:pointer">delete</button></div><br>
+      </div>
+   </div>
 
 </body>
 </html>
